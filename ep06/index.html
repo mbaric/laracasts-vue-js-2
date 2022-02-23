@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Episode 6 - The Need for Computed Properties</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="root">
+    <h1>All tasks</h1>
+    <li v-for="task in tasks">
+        <em v-text="task.description"></em>
+    </li>
+
+    <h1>Completed tasks</h1>
+    <li v-for="task in completeTasks">
+        <em v-text="task.description"></em>
+        <button @click="markAsIncomplete(task)">Click Me to Incomplete</button>
+    </li>
+
+    <h1>Incomplete tasks</h1>
+    <li v-for="task in inCompleteTasks">
+        <em v-text="task.description"></em>
+        <button @click="markAsComplete(task)">Click Me to Complete</button>
+    </li>
+</div>
+
+<script type="text/javascript">
+
+    var app = new Vue({
+        el: "#root",
+        data: {
+            tasks: [
+                {description: "A", completed: true},
+                {description: "B", completed: false},
+                {description: "C", completed: false},
+                {description: "D", completed: false},
+                {description: "E", completed: true},
+                {description: "F", completed: true},
+            ]
+        },
+        methods: {
+            markAsIncomplete(task) {
+                task.completed = false;
+            },
+            markAsComplete(task) {
+                task.completed = true;
+            }
+        },
+        computed: {
+            completeTasks() {
+                return this.tasks.filter(task => task.completed)
+            },
+            inCompleteTasks() {
+               return this.tasks.filter(task => !task.completed)
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
