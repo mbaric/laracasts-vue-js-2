@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Episode 5 - Attribute and Class Binding</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<style>
+    .toggle-on {color: dodgerblue;}
+    .toggle-off {color: green;}
+</style>
+<body>
+
+<div id="root">
+    <h1 :class="{ 'toggle-on': isToggled, 'toggle-off': !isToggled}">{{title}}</h1>
+    <button  @click="toggleClass">Click me</button>
+    <button :disabled="isDisabled" @click="toggleDisabled">I will be disabled when you click on me</button>
+    <pre>{{ $data | json }}</pre>
+</div>
+
+<script type="text/javascript">
+
+    var app = new Vue({
+        el: "#root",
+        data: {
+            title: document.title,
+            isToggled: false,
+            isDisabled: false,
+        },
+        methods: {
+            toggleClass() {
+                this.isToggled = !this.isToggled;
+            },
+            toggleDisabled() {
+                this.isDisabled = true;
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

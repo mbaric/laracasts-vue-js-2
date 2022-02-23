@@ -16,7 +16,7 @@
 <body>
 
     <div id="root">
-        <button :class="{ 'is-loading': isLoading }" @click="toggleClass">Click me</button>
+        <button :class="{ 'is-loading': isToggled }" @click="toggleClass">Click me</button>
         <button :disabled="isDisabled">AHA</button>
         <button @click="toggleDisabled">Click me</button>
         <pre>{{ $data | json }}</pre>
@@ -28,7 +28,7 @@
             el: "#root",
             data: {
                 className: 'red',
-                isLoading: false,
+                isToggled: false,
                 isDisabled: false
             },
             methods: {
